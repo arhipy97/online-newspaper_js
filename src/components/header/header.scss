@@ -1,0 +1,50 @@
+@import "../constants/colors.scss";
+
+.wrapper {
+    background-color: $background-white;
+    display: flex;
+    justify-content: space-around;
+    text-transform: uppercase;
+    h1 {
+        display: none;
+    }
+
+    .header__logo{
+        p {
+            font: 800 normal 25px 'Roboto', sans-serif;
+            color: $letter-black;
+            cursor: pointer;
+            letter-spacing: 4px;
+            transition: 0.5s;
+            padding-right: 30px;
+            padding: 20px 20px;
+            &:hover {
+                color: $hover-blue;
+                transform: scale(0.9);
+            }
+        }
+    }
+
+    .header__menu {
+        display: flex;
+        align-items: center;
+        li {
+            font: 600 normal 18px 'Roboto', sans-serif;
+            list-style-type: none;
+            padding-right: 20px;
+            margin-right: 20px;
+            color: $letter-gray;
+            letter-spacing: 2px;
+            cursor: pointer;
+            border-right: 4px solid $border-gray;
+            &:nth-child(4) {
+                border-right:none;
+            }
+            &:hover {
+                color: $hover-blue;
+                text-decoration: underline;
+            }
+        }
+    }
+    
+}
