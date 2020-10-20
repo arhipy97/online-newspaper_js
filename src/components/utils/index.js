@@ -1,4 +1,8 @@
-export default class Component {
+import Store from "../store"
+export default class Component{
+    // extends Store
+    // super();
+
     constructor(props) {
         this.props = props;
     }

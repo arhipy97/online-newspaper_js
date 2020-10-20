@@ -131,16 +131,18 @@
                 }
             }
         }
-        .articles__image {
+        .article {
+            margin-bottom: 100px;
+        }
+        .article__image {
             margin-bottom: 30px;
             img {
                 width: 100%;
                 height: auto;
-                // padding: 20px;
             }
         }
 
-        .articles__description {
+        .article__description {
             padding: 0 20px;
             p {
                 font: 400 normal 18px 'Roboto', sans-serif;

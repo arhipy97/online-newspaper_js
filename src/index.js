@@ -1,13 +1,17 @@
 import "./styles/styles.scss"
 import header from "./components/header"
 import main from "./components/main"
-import render from "./components/xx"
+import store from "./components/store"
+
 
 (() => {
-    document.getElementById("header").innerHTML = header.render()
-    document.getElementById("main").innerHTML = main.render()
+    let photosArray
+    store.getResource("photos")
+        .then(() => photosArray = store.getValue("photos"))
+        .then(()=> document.getElementById("header").innerHTML = header.render())
+        .then(()=> document.getElementById("main").innerHTML += main.render())
+        .then(() => main.renderPhotoArticles(photosArray, 10))
 })()
 
-render.getResource("photos")
 
 

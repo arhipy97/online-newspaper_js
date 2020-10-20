@@ -11,12 +11,10 @@ class EventIniter {
 
     getResource = async (resource) => {
         const res = await fetch(`${this._apiBase}${resource}`);
-
         await res.json()
             .then((json) => {
-                this.__state.resource = json;
+                this.__state[`${resource}`] = json;
             });
-        console.log(this.__state)
         return this
     }
 
