@@ -1,12 +1,8 @@
-import BaseClass from "../utils"
+import BaseClass from "../API-wrapper"
 import template from "./main.html"
 import "./main.scss"
 
 class Main extends BaseClass {
-    // super(props) {
-    //     this.props = props;
-    // }
-
     render() {
         return template
     }

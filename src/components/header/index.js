@@ -1,4 +1,4 @@
-import BaseClass from "../utils"
+import BaseClass from "../API-wrapper"
 import template from "./header.html"
 import "./header.scss"
 
