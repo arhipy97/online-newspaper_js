@@ -1,4 +1,4 @@
-export default class API_WRAPPER{
+export default class ApiWrapper{
     constructor(instance) {
         this.api = instance;
     }
@@ -9,9 +9,5 @@ export default class API_WRAPPER{
 
     getResource(path) {
         return this.api.getResource(path)
-    }
-
-    render () {
-        throw Error("Need template!")
     }
 }

@@ -5,7 +5,7 @@ const path = require('path');
 module.exports = {
     context: path.resolve(__dirname, "src"),
     mode: "development",
-    entry: ["@babel/polyfill",'./index.js'],
+    entry: ["@babel/polyfill", './index.js'],
     output: {
         filename: 'bundle.js',
         path: path.resolve(__dirname, './dist')
@@ -16,10 +16,12 @@ module.exports = {
         }
     },
     devServer: {
-        port: 4200
+        port: 4200,
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
+            filename: "index.html",
             template: "./index.html"
         }),
         new CleanWebpackPlugin()

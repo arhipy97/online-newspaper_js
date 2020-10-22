@@ -1,9 +1,7 @@
-import BaseClass from "../API-wrapper"
 import template from "./header.html"
 import "./header.scss"
 
-class Header extends BaseClass {
-
+class Header{
     render() {
         return template
     }

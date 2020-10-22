@@ -153,7 +153,8 @@
                 margin-bottom: 40px;
             }
 
-            a {
+            button {
+                cursor: pointer;
                 color: $letter-black;
                 text-decoration: none;
                 font: 800 normal 15px 'Roboto', sans-serif;

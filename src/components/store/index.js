@@ -1,37 +1,18 @@
-const BACKEND_BASE_PATH = 'https://jsonplaceholder.typicode.com/'
-
-export default class FetchAPI {
+class Store {
     constructor() {
-        this.__state = {};
-        // this.callbacks = [];
+        this._store = {}
     }
 
-    getStoreValue(field) {
-        // console.log("+++");
-        // console.log(this.__state[field])
-        // console.log("++");
-        return this.__state[field];
+    addTo(field, data) {
+        this._store[field] = data;
     }
 
-    getResource = async (path) => {
-        let response = await fetch(`${BACKEND_BASE_PATH}${path}`);
-        let array = await response.json()
-        this.__state[`${path}`] = array;
-        return this.__state[`${path}`]
+    getField(field) {
+        return this._store[field]
     }
-
-    // attach(callback) {
-    //     this.callbacks.push(callback)
-    //     return this;
-    // }
-
-    // detach(callback) {
-    //     this.callbacks = this.callbacks.filter((callb) => callb !== callback);
-    //     return this;
-    // }
-
-    // commit() {
-    //     this.callbacks.forEach((el) => el(this.__state))
-    //     return this;
-    // }
 }
+
+export default new Store()
+
+// this.__state[`${path}`] = array;
+        //  this.__state[`${path}`]
