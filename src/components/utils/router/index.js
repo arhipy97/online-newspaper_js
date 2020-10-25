@@ -1,21 +1,28 @@
 export default class Router {
-    constructor(instance) {
-        this.slot = document.querySelector(".articles");
-        this._history = [];
+    constructor(instance, slotId) {
+        this.slot = document.getElementById(`${slotId}`);
         this.instance = instance;
+        this.history = [];
     }
 
-    forward(path, query = {}) {
-        this._history.push(path);
-        window.history.pushState(query, document.title, path);
-        
-        if(!this.instance[path.substring(1)]) throw Error("404")
-        this.instance[path.substring(1)]()
+    forward(path) {
+        this.history.push(path)
+        window.history.pushState(null, document.title, path);
+        if(!this.instance[path]) throw Error("404")
+        this.updateState(path)
     }
 
     back(){
-        let path = this._history.pop();
-        window.history.replaceState(query = {}, document.title, path)
+        let path = this.history.pop();
+        window.history.replaceState(null, document.title, path)
+        let asd = !!this.history.length ? this.history[length - 1]: "main"
+        console.log(asd);
+        this.updateState(asd)
+    }
+
+    updateState(path) {
+        this.slot.innerHTML = this.instance[path](+/\d+/.exec(path))
+        if (path !== "main") window.scrollTo(0, 0)
     }
 }
 

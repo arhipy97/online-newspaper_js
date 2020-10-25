@@ -1,0 +1,37 @@
+@import "../../utils/constants/colors.scss";
+
+.article {
+    margin-bottom: 100px;
+}
+.article__image {
+    margin-bottom: 30px;
+    img {
+        width: 100%;
+        height: auto;
+    }
+}
+
+.article__description {
+    padding: 0 20px;
+    p {
+        font: 400 normal 18px 'Roboto', sans-serif;
+        letter-spacing: 1px;
+        color: $letter-gray;
+        margin-bottom: 15px;
+        
+        margin-bottom: 40px;
+    }
+
+    button {
+        cursor: pointer;
+        color: $letter-black;
+        text-decoration: none;
+        font: 800 normal 15px 'Roboto', sans-serif;
+        border: 2px solid $letter-gray;
+        padding: 15px 30px;
+        &:hover {
+            border: 2px solid $hover-blue;
+            color: $hover-blue;
+        }
+    }
+}

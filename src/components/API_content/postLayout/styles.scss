@@ -1,0 +1,30 @@
+@import "../../utils/constants/colors.scss";
+
+.post {
+    padding: 0 5%;
+    color: $letter-black;
+    .post__title {
+        font: 800 normal 25px 'Roboto', sans-serif;
+        letter-spacing: 2px;
+        text-align: center;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    .post__body {
+        font: 400 normal 15px 'Roboto', sans-serif;
+        letter-spacing: 1px;
+        margin-bottom: 50px;
+    }
+    .refferToMain {
+        cursor: pointer;
+        color: $letter-black;
+        text-decoration: none;
+        font: 800 normal 15px 'Roboto', sans-serif;
+        border: 2px solid $letter-gray;
+        padding: 10px 25px;
+        &:hover {
+            border: 2px solid $hover-blue;
+            color: $hover-blue;
+        }
+    }
+}
