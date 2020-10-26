@@ -1,27 +1,24 @@
 import "./styles.scss"
 
 class PhotoContent{
-    createPhotoItem(value) {
+    createPhotoItem(data) {
         return `<div class="article">
                         <div class="article__image">
-                            <img src=${value['url']} alt="img">
+                            <img src=${data['url']} alt="img">
                         </div>
                         <div class="article__description">
-                            <p class="article__title">${value['title']}</p>
-                            <button class="articleDescription" id="${value['id']}">continue reading</button>
+                            <p class="article__title">${data['title']}</p>
+                            <button class="articleDescription" id="${data['id']}">continue reading</button>
                         </div>
                     </div>
                 `
     }
 
     pack(arr, quality) {
-        let layout = ""
-        arr.forEach((value, id) => {
-            if (id < quality) {
-                layout += this.createPhotoItem(value)
-            }
-        })
-        return layout;
+        return arr.reduce((acc, value, id) => {
+            if(id > quality) return acc;
+            return `${acc}${this.createPhotoItem(value)}`
+        }, "")
     }
 }
 

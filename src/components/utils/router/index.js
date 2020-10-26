@@ -7,20 +7,19 @@ export default class Router {
 
     forward(path) {
         this.history.push(path)
-        window.history.pushState(null, document.title, path);
-        if(!this.instance[path]) throw Error("404")
+        window.history.pushState({path}, document.title, path);
         this.updateState(path)
     }
 
     back(){
-        let path = this.history.pop();
-        window.history.replaceState(null, document.title, path)
-        let asd = !!this.history.length ? this.history[length - 1]: "main"
-        console.log(asd);
-        this.updateState(asd)
+        this.history.pop();
+        let path = this.history.length ? this.history[length - 1] : "main";
+        window.history.replaceState({path}, document.title, path)
+        this.updateState(path)
     }
 
     updateState(path) {
+        if(!this.instance[path]) throw Error("404")
         this.slot.innerHTML = this.instance[path](+/\d+/.exec(path))
         if (path !== "main") window.scrollTo(0, 0)
     }

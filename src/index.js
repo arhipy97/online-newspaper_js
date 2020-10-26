@@ -24,21 +24,22 @@ const api = new ApiWrapper(new FetchAPI());
     }
     
     store.getItem("posts").forEach(item => {
-        links[`post/${item.id}`] = () => postContentLayout.pack(store.getItem("posts"), `${item.id}`)
-    })  //сетаю статьи с коллбеками в ссылки
+        links[`post${item.id}`] = () => postContentLayout.pack(store.getItem("posts"), `${item.id}`)
+        }
+    )  //сетаю статьи с коллбеками в ссылки
     
     const router = new Router(links, "api__content") //2 arg - id элемента в котором происходит перерисовка
     
     window.addEventListener("popstate", (event) => {
-        router.updateState(event.state)
+        router.updateState(event.state.path)
     })
 
-    const descriptionButtons = document.querySelectorAll(".articleDescription")     
-    descriptionButtons.forEach((item) => {
+    document.querySelectorAll(".articleDescription").forEach((item) => {
         item.addEventListener("click", (event) => {
-        router.forward(`post/${event.target.id}`) 
-        document.querySelector(".refferToMain").addEventListener("click", () => router.back())
-    })
+        router.forward(`post${event.target.id}`);
+        document.querySelector(".refferToMain").addEventListener("click", () => router.back()
+        ) //при отрисовке поста, назначаю кнопке возврат! ТАКОЙ ХУЙНИ ДУМАю ТЫ ЕЩЁ НЕ ВИДАЛ
+    })//не могу решить вопрос с назначением кнопок при перерисовках постоянных. через onclick ничего не выходит
 })
 }   
 )()
