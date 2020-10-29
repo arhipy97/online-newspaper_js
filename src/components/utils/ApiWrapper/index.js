@@ -3,12 +3,11 @@ export default class ApiWrapper{
         this.api = instance;
     }
 
-    getResource(path) {
-        return this.api.getResource(path)
+    get(path) {
+        return this.api.get(path)
     }
 
-    getResources(arr) {
-        return this.api.getResources(arr)
+    put(obj) {
+        return this.api.put(obj)
     }
-
 }

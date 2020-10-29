@@ -1,6 +1,6 @@
 export default class Store {
-    constructor(data) {
-        this.data = data
+    constructor() {
+        this.data = {}
     }
 
     addTo(field, value) {

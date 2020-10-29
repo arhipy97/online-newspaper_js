@@ -8,11 +8,15 @@ import main from "./components/main"
 import sidePhotoContent from "./components/API_content/sidePhotoLayout"
 import photoContentLayout from "./components/API_content/photoLayout"
 import postContentLayout from "./components/API_content/postLayout"
+import commentsLayout from "./components/API_content/commentLayout"
+import BtnHandler from "./components/utils/BtnHandler"
 
 const api = new ApiWrapper(new FetchAPI());
 
 (async () => {
-    const store = new Store(await api.getResources(["photos", "posts", "comments"]));
+    // const store = new Store(await api.getResources(["photos", "posts", "comments"]));
+    const store = new Store()
+    store.addTo("photos", await api.get("/photos")); //1 арг - ключ
 
     document.getElementById("header").innerHTML = header.render()
     document.getElementById("main").innerHTML += main.render()
@@ -20,26 +24,27 @@ const api = new ApiWrapper(new FetchAPI());
     document.getElementById("side__news").innerHTML = sidePhotoContent.pack(store.getItem("photos"), 5)//рекламные(боковые) статьи
 
     let links = {
-        main: () => photoContentLayout.pack(store.getItem("photos"), 10),
-    }
-    
-    store.getItem("posts").forEach(item => {
-        links[`post${item.id}`] = () => postContentLayout.pack(store.getItem("posts"), `${item.id}`)
+        main: async () => {
+            let responce = await api.get("/photos")
+            return photoContentLayout.pack(responce, 10)
+        },
+        post: async (id) => {
+            let postsResponse = await api.get(`/posts/${id}`)
+            let commentsResponse = await api.get(`/posts/${id}/comments`)
+            return postContentLayout.pack(postsResponse) + commentsLayout.pack(commentsResponse)
         }
-    )  //сетаю статьи с коллбеками в ссылки
-    
+    }
+
     const router = new Router(links, "api__content") //2 arg - id элемента в котором происходит перерисовка
-    
+
     window.addEventListener("popstate", (event) => {
-        router.updateState(event.state.path)
+        if(event.state === null) {
+            router.updateState("main")
+        } else {
+            router.updateState(event.state.path)
+        }
     })
 
-    document.querySelectorAll(".articleDescription").forEach((item) => {
-        item.addEventListener("click", (event) => {
-        router.forward(`post${event.target.id}`);
-        document.querySelector(".refferToMain").addEventListener("click", () => router.back()
-        ) //при отрисовке поста, назначаю кнопке возврат! ТАКОЙ ХУЙНИ ДУМАю ТЫ ЕЩЁ НЕ ВИДАЛ
-    })//не могу решить вопрос с назначением кнопок при перерисовках постоянных. через onclick ничего не выходит
-})
-}   
+    const apiBtnsHandler = new BtnHandler(document.querySelector(".articles"), router) //положил роутер внутрь, не очень нравится затея
+    }
 )()
