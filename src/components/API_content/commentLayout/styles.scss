@@ -1,7 +1,7 @@
 @import "../../utils/constants/colors.scss";
 
 .comment {
-    padding:20px 140px 20px 40px;
+    padding:20px 40px 20px 40px;
     border: 2px solid $letter-gray;
     margin-bottom: 20px;
     .user_info{
@@ -11,7 +11,8 @@
         cursor: default;
         margin-bottom: 30px;
         .user_name{
-
+            color: $hover-blue;
+            margin-right: 20px;
         }
         .user_email{
 
@@ -20,25 +21,22 @@
     .user_body{
         font: 500 normal 15px 'Roboto', sans-serif;
         letter-spacing: 1px;
-        .article__title{
-
-        }
-
     }
 }
 .commentInput{
-    display: flex;
-    justify-content: space-between;
-    padding:20px 140px 20px 40px;
+    padding:20px 40px 20px 40px;
     textarea {
         height: 100px;
-        width: 400px;
+        width: 100%;
         font-size: 20px;
-        resize:none
+        resize:none;
+        margin-bottom: 30px;
     }
     .comments__buttons{
+        display: flex;
+        justify-content: space-around;
         margin-top: auto;
-        input{
+        button{
             font: 800 normal 15px 'Roboto', sans-serif;
             cursor: pointer;
             text-decoration: none;

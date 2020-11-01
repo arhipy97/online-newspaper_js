@@ -31,7 +31,7 @@ const api = new ApiWrapper(new FetchAPI());
         post: async (id) => {
             let postsResponse = await api.get(`/posts/${id}`)
             let commentsResponse = await api.get(`/posts/${id}/comments`)
-            return postContentLayout.pack(postsResponse) + commentsLayout.pack(commentsResponse)
+            return postContentLayout.pack(postsResponse) + commentsLayout.pack(commentsResponse, id)
         }
     }
 
@@ -45,6 +45,6 @@ const api = new ApiWrapper(new FetchAPI());
         }
     })
 
-    const apiBtnsHandler = new BtnHandler(document.querySelector(".articles"), router) //положил роутер внутрь, не очень нравится затея
+    const apiBtnsHandler = new BtnHandler(document.querySelector(".articles"), router, api) //положил роутер внутрь, не очень нравится затея
     }
 )()

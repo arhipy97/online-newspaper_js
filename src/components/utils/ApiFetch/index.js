@@ -6,7 +6,20 @@ export default class FetchAPI {
         return response.json()
     }
 
-    put = async () => {
+    post = async (obj) => {
         console.log("asd")
+        // await fetch(`${BACKEND_BASE_PATH}/posts/${id}/comments`, {
+        // method: 'POST',
+        // body: JSON.stringify({
+        //     title: 'foo',
+        //     body: 'bar',
+        //     userId: 1,
+        // }),
+        // headers: {
+        //     'Content-type': 'application/json; charset=UTF-8',
+        // },
+        // })
+        // .then((response) => response.json())
+        // .then((json) => console.log(json))
     }
 }

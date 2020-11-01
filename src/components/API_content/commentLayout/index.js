@@ -20,19 +20,20 @@ class CommentContent {
 
     pack(arr, postId) {
         let commentsHTML = arr.reduce((acc, value) => {
-            if(value.postId === postId) return acc;
             return `${acc}${this.createCommentItem(value)}`
         }, "")
         return commentsHTML += `
-                                <div class="commentInput">
-                                    <textarea name="comment" cols="40" rows="3"></textarea>
+                                <div class="commentInput" data-action="submit">
+                                    <textarea name="comment" cols="40" rows="3" id="commentValue"></textarea>
                                     <div class="comments__buttons">
-                                        <input type="submit" value="submit" data-action="renderArticle" "id=${postId}">
-                                        <input type="reset" value="reset">
+                                        <button id=${postId}" data-action="submitForm">submit</button>
+                                        <button data-action="resetForm">reset</button>
                                     </div>
                                 </div>
                                 `
     }
 }
+
+//data-action="submit"
 
 export default new CommentContent()

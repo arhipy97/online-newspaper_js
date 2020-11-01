@@ -7,7 +7,7 @@ export default class ApiWrapper{
         return this.api.get(path)
     }
 
-    put(obj) {
-        return this.api.put(obj)
+    post(obj) {
+        return this.api.post(obj)
     }
 }
