@@ -10,6 +10,7 @@ import photoContentLayout from "./components/API_content/photoLayout"
 import postContentLayout from "./components/API_content/postLayout"
 import commentsLayout from "./components/API_content/commentLayout"
 import BtnHandler from "./components/utils/BtnHandler"
+import localStorage from "./components/utils/localStorage"
 
 const api = new ApiWrapper(new FetchAPI());
 
@@ -31,7 +32,8 @@ const api = new ApiWrapper(new FetchAPI());
         post: async (id) => {
             let postsResponse = await api.get(`/posts/${id}`)
             let commentsResponse = await api.get(`/posts/${id}/comments`)
-            return postContentLayout.pack(postsResponse) + commentsLayout.pack(commentsResponse, id)
+            let allComments = commentsResponse.concat(localStorage.getComments(id))
+            return postContentLayout.pack(postsResponse) + commentsLayout.pack(allComments, id)
         }
     }
 
@@ -45,6 +47,6 @@ const api = new ApiWrapper(new FetchAPI());
         }
     })
 
-    const apiBtnsHandler = new BtnHandler(document.querySelector(".articles"), router, api) //положил роутер внутрь, не очень нравится затея
+    const apiBtnsHandler = new BtnHandler(document.querySelector(".articles"), router, api, localStorage) //положил роутер внутрь, не очень нравится затея
     }
 )()

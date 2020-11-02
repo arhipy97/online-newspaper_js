@@ -1,11 +1,12 @@
 import comments from "../../API_content/commentLayout"
 
 export default class BtnHandler {
-    constructor(elem, router, api) {
+    constructor(elem, router, api, localStorage) {
         this._elem = elem
         elem.onclick = this.onClick.bind(this)
         this.router = router;
         this.api = api;
+        this.localStorage = localStorage;
     }
 
     renderArticle(event) {
@@ -23,13 +24,14 @@ export default class BtnHandler {
         }
     }
 
-    submitForm(event) {
+    async submitForm(event) {
         const textArea = document.getElementById("commentValue")
         if (textArea.value === null || textArea.value === "") {
             return alert("Fill up this form and press 'Submit'.")
         }
-        // this.api.post()
-        // router.updateState(event.state.path)
+        let newPost = await this.api.post(event.target.id, textArea.value)
+        this.localStorage.putComments(newPost[0].postId, newPost[0]) //[0] потому что  отправляю в массива, тк без него получаю хуйню
+        this.router.updateState(`post${event.target.id}`)
     }
 
     resetForm() {

@@ -28,7 +28,7 @@ export default class Router {
 
         const HTML = await this.links[pathCheck](id)
         this.slot.innerHTML = HTML
-        if (pathCheck === "post") window.scrollTo(0, 0)
+        // if (pathCheck === "post") window.scrollTo(0, 0)
     }
 }
 

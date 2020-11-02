@@ -26,7 +26,7 @@ class CommentContent {
                                 <div class="commentInput" data-action="submit">
                                     <textarea name="comment" cols="40" rows="3" id="commentValue"></textarea>
                                     <div class="comments__buttons">
-                                        <button id=${postId}" data-action="submitForm">submit</button>
+                                        <button id=${postId} data-action="submitForm">submit</button>
                                         <button data-action="resetForm">reset</button>
                                     </div>
                                 </div>
