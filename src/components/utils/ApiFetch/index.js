@@ -1,12 +1,12 @@
 const BACKEND_BASE_PATH = 'https://jsonplaceholder.typicode.com'
 
 export default class FetchAPI {
-    get = async (path) => {
+    async get(path) {
         let response = await fetch(`${BACKEND_BASE_PATH}${path}`);
         return response.json()
     }
 
-    post = async (id, value) => {
+    async post (id, value) {
         let response = await fetch(`${BACKEND_BASE_PATH}/posts/${id}/comments`, {
             method: 'POST',
             body: JSON.stringify([

@@ -4,8 +4,7 @@ class LocalStorage {
     }
 
     getComments(postId) {
-        const commentsLocalStorage = localStorage.getItem(`${this.keyName}${postId}`);
-        return commentsLocalStorage !== null ? JSON.parse(commentsLocalStorage): [];
+        return JSON.parse(localStorage.getItem(`${this.keyName}${postId}`) || '[]')
     }
 
     putComments(postId, obj) {

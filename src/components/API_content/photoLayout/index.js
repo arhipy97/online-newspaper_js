@@ -1,14 +1,14 @@
 import "./styles.scss"
 
 class PhotoContent{
-    createPhotoItem(data) {
+    createPhotoItem({url,title,id}) {
         return `<div class="article">
                         <div class="article__image">
-                            <img src=${data['url']} alt="img">
+                            <img src=${url} alt="img">
                         </div>
                         <div class="article__description">
-                            <p class="article__title">${data['title']}</p>
-                            <button class="articleDescriptionButton" id="${data['id']}" data-action="renderArticle">continue reading</button>
+                            <p class="article__title">${title}</p>
+                            <button class="articleDescriptionButton" id="${id}" data-action="renderArticle">continue reading</button>
                         </div>
                     </div>
                 `

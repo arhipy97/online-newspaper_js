@@ -1,18 +1,18 @@
 import "./styles.scss"
 
 class CommentContent {
-    createCommentItem(user) {
+    createCommentItem({name, email, body}) {
         return `<div class="comment">
                     <div class="user_info">
                         <div class="user_name">
-                            <p>${user.name}</p>
+                            <p>${name}</p>
                         </div>
                         <div calss=""user_email>
-                            <p>${user.email}</p>
+                            <p>${email}</p>
                         </div>
                     </div>
                     <div class="user_body">
-                        <p class="article__title">${user.body}</p>
+                        <p class="article__title">${body}</p>
                     </div>
                 </div>
                 `
@@ -22,7 +22,7 @@ class CommentContent {
         let commentsHTML = arr.reduce((acc, value) => {
             return `${acc}${this.createCommentItem(value)}`
         }, "")
-        return commentsHTML += `
+        return commentsHTML + `
                                 <div class="commentInput" data-action="submit">
                                     <textarea name="comment" cols="40" rows="3" id="commentValue"></textarea>
                                     <div class="comments__buttons">
