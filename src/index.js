@@ -15,8 +15,7 @@ const api = new ApiWrapper(new FetchAPI());
 
 (async () => {
     document.getElementById("header").innerHTML = header.render()
-    document.getElementById("main").innerHTML += main.render()
-    document.getElementById("api__content").innerHTML = photoContentLayout.pack(await api.get("/photos"), 10);//второй аргумент - кол-во отображаемых елементов
+    document.getElementById("main").innerHTML = main.render()
     document.getElementById("side__news").innerHTML = sidePhotoContent.pack(await api.get("/photos"), 5)//рекламные(боковые) статьи
 
     const links = {
@@ -33,6 +32,7 @@ const api = new ApiWrapper(new FetchAPI());
     }
 
     const router = new Router(links, "api__content") //2 arg - id элемента в котором происходит перерисовка
+    router.updateState(!!history.state ? history.state.path : "main")
 
     window.addEventListener("popstate", (event) => {
         if(event.state === null) {
@@ -42,6 +42,6 @@ const api = new ApiWrapper(new FetchAPI());
         }
     })
 
-    const apiBtnsHandler = new BtnHandler(document.querySelector(".articles"), router, api, localStorage) //положил роутер внутрь, не очень нравится затея
+    const apiBtnsHandler = new BtnHandler(document.querySelector(".main__wrapper"), router, api, localStorage) //положил роутер внутрь, не очень нравится затея
     }
 )()

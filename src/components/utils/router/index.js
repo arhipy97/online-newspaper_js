@@ -6,7 +6,6 @@ export default class Router {
     }
 
     forward(path) {
-        // const path = `${route}${id}`
         this.history.push(path)
         window.history.pushState({path}, document.title, path);
         this.updateState(path) 

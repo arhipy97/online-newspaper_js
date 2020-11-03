@@ -10,7 +10,11 @@ export default class BtnHandler {
     }
 
     renderArticle(event) {
-        this.router.forward(`post${event.target.id}`)
+        this.router.forward(event.target.id)
+    }
+
+    renderArt(event) {
+        console.log(event.target)
     }
 
     renderMain() {

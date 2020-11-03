@@ -1,10 +1,10 @@
 import "./styles.scss"
 
 class PostContent{
-    pack(responce) {
+    pack({title, body}) {
         return `<div class="post">
-                    <h1 class="post__title">${responce.title}</h1>
-                    <p class="post__body">${responce.body}</p>
+                    <h1 class="post__title">${title}</h1>
+                    <p class="post__body">${body}</p>
                     <div class="buttons">
                         <button class="refferToMain" data-action="renderMain">main page</button>
                     </div>
