@@ -13,7 +13,7 @@ export default class BtnHandler {
     }
 
     renderMain() {
-        this.router.forward(`main`)
+        this.router.forward(`/main`)
     }
 
     onClick(event) {

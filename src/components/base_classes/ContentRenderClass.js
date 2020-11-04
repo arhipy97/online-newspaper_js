@@ -1,12 +1,16 @@
 import api from "../utils/ApiWrapper"
 
 export default class Content {
+    constructor() {
+        this.containerId = "api__content";  
+    }
+
     createItem(templateCallback) {
-        return templateCallback(this.instance)
+        return templateCallback(this.instance);
     }
     
-    getArray(path) {
-        return api.get(path)
+    fetch() {
+        return api.get(this.path);
     }
 }
 

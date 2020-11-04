@@ -33,9 +33,11 @@ export default class Router {
 
     interval() {
         let currentHash = window.location.pathname;
+
         if(this.previousHash !== currentHash) {
             this.previousHash = currentHash;
-            this.updateState(currentHash)
+            console.log("new hash")
+            // this.updateState(currentHash)
         } 
         return
     }

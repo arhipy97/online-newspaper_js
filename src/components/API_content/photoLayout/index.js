@@ -8,7 +8,7 @@ class PhotoContent{
                         </div>
                         <div class="article__description">
                             <p class="article__title">${title}</p>
-                            <button class="articleDescriptionButton" id="/post${id}" data-action="renderArticle">continue reading</button>
+                            <button class="articleDescriptionButton" id="/post/${id}" data-action="renderArticle">continue reading</button>
                         </div>
                     </div>
                 `

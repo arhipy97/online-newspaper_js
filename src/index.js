@@ -10,12 +10,15 @@ import commentsLayout from "./components/API_content/commentLayout"
 import BtnHandler from "./components/utils/BtnHandler"
 import localStorage from "./components/utils/localStorage"
 
+import testPhotoContent from "./components/Content/PhotoContent"
+import testSidePhotoContent from "./components/Content/sidePhotoContent"
+
 
 
 (async () => {
     document.getElementById("header").innerHTML = header.render()
     document.getElementById("main").innerHTML = main.render()
-    document.getElementById("side__news").innerHTML = sidePhotoContent.pack(await api.get("/photos"), 5)//рекламные(боковые) статьи
+    // document.getElementById("side__news").innerHTML = sidePhotoContent.pack(await api.get("/photos"), 5)//рекламные(боковые) статьи
 
     const links = {
         main: async () => {
@@ -31,6 +34,9 @@ import localStorage from "./components/utils/localStorage"
     }
 
     const router = new Router(links)
+
+    await testPhotoContent.render(router)
+    await testSidePhotoContent.render(router)
 
     const apiBtnsHandler = new BtnHandler(document.querySelector(".main__wrapper"), router, api, localStorage) //положил роутер внутрь, не очень нравится затея
     }

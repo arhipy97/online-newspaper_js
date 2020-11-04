@@ -1,0 +1,38 @@
+@import "../../utils/constants/colors.scss";
+
+.left-side__content {
+    border-bottom: 4px solid $border-gray;
+    margin-bottom: 50px;
+    padding-bottom: 40px;
+    cursor: pointer;
+
+    .left-side__content-item{
+        margin-bottom: 50px;
+        box-shadow: -10px 5px 50px gray;
+        background-color: $background-white;
+        border: 2px solid $border-gray;
+        img{
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+        }
+        .left-side-content__text {
+            padding: 0 10px 10px;
+            .title {
+                font: 800 normal 20px 'Roboto', sans-serif;
+                text-transform: uppercase;
+                margin-bottom: 10px;
+                color: $letter-black;
+                letter-spacing: 1px;
+                &:hover {
+                    color: $hover-blue
+                }
+            }
+            .subtitle {
+                font: 400 normal 18px 'Roboto', sans-serif;
+                color: $letter-gray;
+                letter-spacing: 1px;
+            }
+        }
+    }
+}
