@@ -9,7 +9,7 @@ class PostContent{
                         <button class="refferToMain" data-action="renderMain">main page</button>
                     </div>
                 </div> 
-                <div class="comments" id=""comments></div>         
+                <div class="comments"></div>         
         `
     }
 }// можно ли два элемента с одним id при перерендере

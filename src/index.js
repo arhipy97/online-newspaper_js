@@ -1,7 +1,6 @@
 import "./styles/styles.scss"
 import header from "./components/header"
-import FetchAPI from "./components/utils/ApiFetch"
-import ApiWrapper from "./components/utils/ApiWrapper"
+import api from "./components/utils/ApiWrapper"
 import Router from "./components/utils/router"
 import main from "./components/main"
 import sidePhotoContent from "./components/API_content/sidePhotoLayout"
@@ -11,7 +10,7 @@ import commentsLayout from "./components/API_content/commentLayout"
 import BtnHandler from "./components/utils/BtnHandler"
 import localStorage from "./components/utils/localStorage"
 
-const api = new ApiWrapper(new FetchAPI());
+
 
 (async () => {
     document.getElementById("header").innerHTML = header.render()
@@ -31,16 +30,7 @@ const api = new ApiWrapper(new FetchAPI());
         }
     }
 
-    const router = new Router(links, "api__content") //2 arg - id элемента в котором происходит перерисовка
-    router.updateState(!!history.state ? history.state.path : "main")
-
-    window.addEventListener("popstate", (event) => {
-        if(event.state === null) {
-            router.updateState("main")
-        } else {
-            router.updateState(event.state.path)
-        }
-    })
+    const router = new Router(links)
 
     const apiBtnsHandler = new BtnHandler(document.querySelector(".main__wrapper"), router, api, localStorage) //положил роутер внутрь, не очень нравится затея
     }

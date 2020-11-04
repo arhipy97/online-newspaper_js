@@ -5,7 +5,7 @@ class SidePhotoContent{
         return `<div  class="left-side__content-item">
                     <img class="left-side-content__img" src="${url}" alt="picture">
                     <div class="left-side-content__text">
-                        <p class="title" data-action="renderArticle" id="post${id}">Lorem ipsum dolor sit amet.</p>
+                        <p class="title" data-action="renderArticle" id="/post${id}">Lorem ipsum dolor sit amet.</p>
                         <p class="subtitle">${title}</p>
                     </div>
                 </div>

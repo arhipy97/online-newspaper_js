@@ -1,4 +1,6 @@
-export default class ApiWrapper{
+import FetchAPI from "../ApiFetch"
+
+class ApiWrapper{
     constructor(instance) {
         this.api = instance;
     }
@@ -11,3 +13,5 @@ export default class ApiWrapper{
         return this.api.post(id, value)
     }
 }
+
+export default new ApiWrapper(new FetchAPI)

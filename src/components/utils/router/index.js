@@ -1,33 +1,42 @@
 export default class Router {
-    constructor(links, slotId) {
-        this.slot = document.getElementById(`${slotId}`);
+    constructor(links) {
+        this.slot = document.getElementById("api__content");
         this.links = links;
-        this.history = [];
+        this.listen();
     }
 
     forward(path) {
-        this.history.push(path)
         window.history.pushState({path}, document.title, path);
-        this.updateState(path) 
     }
 
-    back(){
-        console.log(this.history);
-        this.history.pop();
-        let path = this.history.length ? this.history[length - 1] : "main";
-        window.history.replaceState({path}, document.title, path)
-        this.updateState(path)
-    } //зачем и когда использовать back??
+    // back(){
+    //     console.log(this.history);
+    //     this.history.pop();
+    //     let path = this.history.length ? this.history[length - 1] : "main";
+    //     window.history.replaceState({path}, document.title, path)
+    //     this.updateState(path)
+    // } //зачем и когда использовать back??
 
     async updateState(path) {
-        const id = parseInt(path.split("").reverse().join(""))
-        const pathCheck = path.replace(/\d/g,"") //path без чисел
-
+        if(path === "/") path = "main"
+        const id = path.replace(/\D/g,"") // числа из path
+        const pathCheck = path.replace(/[\d\/]/g,"") //path без чисел и слэшей
         if(!this.links[pathCheck]) throw Error("404")
+        this.slot.innerHTML = await this.links[pathCheck](id)
+    }
 
-        const HTML = await this.links[pathCheck](id)
-        this.slot.innerHTML = HTML
-        // if (pathCheck === "post") window.scrollTo(0, 0)
+    listen() {
+        this.previousHash = window.location.pathname;
+        this.updateState(this.previousHash)
+        setInterval(() => this.interval(), 50);
+    }
+
+    interval() {
+        let currentHash = window.location.pathname;
+        if(this.previousHash !== currentHash) {
+            this.previousHash = currentHash;
+            this.updateState(currentHash)
+        } 
+        return
     }
 }
-
