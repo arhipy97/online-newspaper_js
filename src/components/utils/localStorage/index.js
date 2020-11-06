@@ -4,13 +4,13 @@ class LocalStorage {
     }
 
     getComments(postId) {
-        return JSON.parse(localStorage.getItem(`${this.keyName}${postId}`) || '[]')
+        return JSON.parse(localStorage.getItem(`${postId}`) || '[]')
     }
 
-    putComments(postId, obj) {
-        const comments = this.getComments(postId)
+    putComments(path, obj) {
+        const comments = this.getComments(path)
         comments.push(obj)
-        const FIELD = `${this.keyName}${postId}`
+        const FIELD = `${path}`
         localStorage.setItem(FIELD, JSON.stringify(comments))
     }
 }

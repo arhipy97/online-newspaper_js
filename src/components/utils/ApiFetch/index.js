@@ -6,12 +6,13 @@ export default class FetchAPI {
         return response.json()
     }
 
-    async post (id, value) {
-        let response = await fetch(`${BACKEND_BASE_PATH}/posts/${id}/comments`, {
+    async post (path, value) {
+        const postId = path.replace(/[\D\/]/g, "")
+        let response = await fetch(`${BACKEND_BASE_PATH}${path}/comments`, {
             method: 'POST',
             body: JSON.stringify([
                 {
-                    postId: id,
+                    postId: postId,
                     id: "dont matter", // пусть на беке определяют
                     name: "id labore ex et quam laborum",
                     email: "Eliseo@gardner.biz",

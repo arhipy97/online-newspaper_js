@@ -1,4 +1,4 @@
-export default class RenderBase {
+export default class StaticLayout {
     constructor(layout) {
         this.layout = layout;
     }

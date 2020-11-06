@@ -1,5 +1,5 @@
 import template from "./main.html"
-import BaseRenderClass from "../base_classes/BaseRenderClass"
+import BaseRenderClass from "../base_classes/StaticLayout"
 import "./main.scss"
 
 class Main extends BaseRenderClass{

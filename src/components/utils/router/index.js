@@ -1,12 +1,13 @@
-export default class Router {
-    constructor(links) {
+import navigator from "../Navigator"
+
+class Router {
+    constructor() {
         this.slot = document.getElementById("api__content");
-        this.links = links;
         this.listen();
     }
 
     forward(path) {
-        window.history.pushState({path}, document.title, path);
+        window.history.pushState({ path }, document.title, path);
     }
 
     // back(){
@@ -17,28 +18,20 @@ export default class Router {
     //     this.updateState(path)
     // } //зачем и когда использовать back??
 
-    async updateState(path) {
-        if(path === "/") path = "main"
-        const id = path.replace(/\D/g,"") // числа из path
-        const pathCheck = path.replace(/[\d\/]/g,"") //path без чисел и слэшей
-        if(!this.links[pathCheck]) throw Error("404")
-        this.slot.innerHTML = await this.links[pathCheck](id)
-    }
-
-    listen() {
+    async listen() {
         this.previousHash = window.location.pathname;
-        this.updateState(this.previousHash)
+        await navigator.render(this.previousHash)
         setInterval(() => this.interval(), 50);
     }
 
-    interval() {
+    async interval() {
         let currentHash = window.location.pathname;
-
-        if(this.previousHash !== currentHash) {
+        if (this.previousHash !== currentHash) {
             this.previousHash = currentHash;
-            console.log("new hash")
-            // this.updateState(currentHash)
-        } 
+            await navigator.render(currentHash)
+        }
         return
     }
 }
+
+export default new Router()
