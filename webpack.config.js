@@ -5,10 +5,11 @@ const path = require('path');
 module.exports = {
     context: path.resolve(__dirname, "src"),
     mode: "development",
-    entry: './index.js',
+    entry: ["@babel/polyfill", './index.js'],
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, './dist')
+        path: path.resolve(__dirname, './dist'),
+        publicPath: '/',
     },
     resolve: {
         alias: {
@@ -16,16 +17,28 @@ module.exports = {
         }
     },
     devServer: {
-        port: 4200
+        port: 4200,
+        historyApiFallback: true,
     },
     plugins: [
         new HtmlWebpackPlugin({
+            filename: "index.html",
             template: "./index.html"
         }),
         new CleanWebpackPlugin()
     ],
     module: {
         rules: [
+            {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
             {
                 test: /\.css$/,
                 use: ["style-loader", "css-loader"]
@@ -45,7 +58,11 @@ module.exports = {
                     'css-loader',
                     'sass-loader',
                 ],
-            }
+            },
+            {
+                test: /\.html$/i,
+                loader: 'html-loader',
+            },
         ]
     }
 };
